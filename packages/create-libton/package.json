@@ -1,0 +1,48 @@
+{
+  "name": "create-libton",
+  "version": "0.0.0",
+  "description": "Create modern lib with no build configuration.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/libton-project/libton",
+    "directory": "packages/create-libton"
+  },
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist",
+    "templates"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "bin": {
+    "create-libton": "./dist/bin/create-libton.js"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "test": "jest",
+    "pre-commit": "lint-staged",
+    "format": "prettier --write 'src/**/*.{js,ts,md}'",
+    "format:check": "prettier --list-different 'src/**/*.{js,ts,md}'"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.8",
+    "husky": "^3.0.1",
+    "jest": "^24.8.0",
+    "lint-staged": "^9.2.1",
+    "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  }
+}
