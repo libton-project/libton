@@ -8,9 +8,12 @@ import replace from 'rollup-plugin-replace';
 import colorette from 'colorette';
 import { babelConfig } from '../config/babel-config';
 import path from 'path';
+import { promises as fs } from 'fs';
 import { paths } from '../config/paths';
 import { config, LibtonConfig } from '../config/libton-config';
 import { BuildEnv } from '../types';
+import { generateDtsBundle } from 'dts-bundle-generator';
+import { format } from 'prettier';
 
 console.log("let's make a tea ☕");
 
@@ -112,12 +115,33 @@ async function build(env: BuildEnv) {
   logEnd();
 }
 
+async function buildDts() {
+  const input = paths.libIndex;
+  const output = paths.libDts;
+
+  const logEnd = logStart(input, output);
+  const outputs = generateDtsBundle([
+    {
+      filePath: input,
+    },
+  ]);
+  const content = outputs[0];
+  const prettyContent = format(content, {
+    parser: 'typescript',
+    singleQuote: true,
+    trailingComma: 'all',
+  });
+  await fs.writeFile(output, prettyContent);
+  logEnd();
+}
+
 async function buildAll() {
   await build(BuildEnv.COMMON_JS);
   await build(BuildEnv.ES);
   await build(BuildEnv.ES_FOR_BROWSERS);
   await build(BuildEnv.UMD_DEVELOPMENT);
   await build(BuildEnv.UMD_PRODUCTION);
+  await buildDts();
 }
 
 buildAll();
