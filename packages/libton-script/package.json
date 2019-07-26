@@ -22,6 +22,7 @@
     "clean": "rimraf dist",
     "prebuild": "rimraf dist",
     "build": "tsc",
+    "test": "jest",
     "pre-commit": "lint-staged",
     "format": "prettier --write 'src/**/*.{js,ts,md}'",
     "format:check": "prettier --list-different 'src/**/*.{js,ts,md}'"
@@ -34,14 +35,39 @@
   },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.0",
+    "@types/jest": "^24.0.15",
+    "@types/lodash.get": "^4.4.6",
     "@types/node": "^12.6.8",
     "husky": "^3.0.1",
+    "jest": "^24.8.0",
     "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "cross-spawn": "^6.0.5"
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-destructuring": "^7.5.0",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "babel-plugin-macros": "^2.6.1",
+    "camelcase": "^5.3.1",
+    "colorette": "^1.1.0",
+    "cross-spawn": "^6.0.5",
+    "decamelize": "^3.2.0",
+    "lodash.get": "^4.4.2",
+    "pretty-ms": "^5.0.0",
+    "read-pkg": "^5.2.0",
+    "rollup": "^1.17.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
+    "rollup-plugin-terser": "^5.1.1"
   }
 }
