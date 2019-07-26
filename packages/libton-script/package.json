@@ -9,25 +9,25 @@
   },
   "license": "MIT",
   "files": [
-    "bin",
-    "config",
-    "lib",
-    "scripts",
-    "utils"
+    "src",
+    "dist"
   ],
   "engines": {
     "node": ">=10"
   },
   "bin": {
-    "libton-script": "./bin/libton-scripts.js"
+    "libton-script": "./dist/bin/libton-scripts.js"
   },
   "scripts": {
+    "clean": "rimraf dist",
+    "prebuild": "rimraf dist",
+    "build": "tsc",
     "pre-commit": "lint-staged",
-    "format": "prettier --write '{src,bin}/**/*.{js,ts,md}'",
-    "format:check": "prettier --list-different '{src,bin}/**/*.{js,ts,md}'"
+    "format": "prettier --write 'src/**/*.{js,ts,md}'",
+    "format:check": "prettier --list-different 'src/**/*.{js,ts,md}'"
   },
   "lint-staged": {
-    "{src,bin}/**/*.{js,ts,md}": [
+    "src/**/*.{js,ts,md}": [
       "prettier --write",
       "git add"
     ]
@@ -35,6 +35,8 @@
   "devDependencies": {
     "husky": "^3.0.1",
     "lint-staged": "^9.2.1",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
+    "typescript": "^3.5.3"
   }
 }
