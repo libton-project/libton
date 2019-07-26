@@ -23,6 +23,7 @@
     "clean": "rimraf dist",
     "prebuild": "rimraf dist",
     "build": "tsc",
+    "prepublishOnly": "yarn build",
     "test": "jest",
     "pre-commit": "lint-staged",
     "format": "prettier --write 'src/**/*.{js,ts,md}'",
