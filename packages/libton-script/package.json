@@ -33,10 +33,15 @@
     ]
   },
   "devDependencies": {
+    "@types/cross-spawn": "^6.0.0",
+    "@types/node": "^12.6.8",
     "husky": "^3.0.1",
     "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",
     "rimraf": "^2.6.3",
     "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "cross-spawn": "^6.0.5"
   }
 }
