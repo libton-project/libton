@@ -5,7 +5,7 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveApp = (relativePath: string): string =>
   path.resolve(appDirectory, relativePath);
 
-const moduleFileExtensions = [
+export const moduleFileExtensions = [
   'web.mjs',
   'mjs',
   'web.js',
@@ -39,7 +39,8 @@ export const paths = {
   libSrc: resolveApp('src'),
   libIndex: resolveModule(resolveApp, 'src/index'),
   libDts: resolveApp('index.d.ts'),
-  libPackage: resolveApp('src/package.json'),
+  libPackage: resolveApp('package.json'),
+  testsSetup: resolveModule(resolveApp, 'src/setupTests'),
   outputDirs: {
     dist: resolveApp('dist'),
     lib: resolveApp('lib'),
