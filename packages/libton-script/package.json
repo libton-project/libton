@@ -23,8 +23,9 @@
     "prebuild": "rimraf dist",
     "build": "tsc",
     "prepublishOnly": "yarn build",
+    "lint": "eslint src/**/*ts --max-warnings 0",
     "test": "jest",
-    "pre-commit": "lint-staged",
+    "pre-commit": "lint-staged && yarn lint",
     "format": "prettier --write 'src/**/*.{js,ts,md}'",
     "format:check": "prettier --list-different 'src/**/*.{js,ts,md}'"
   },
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.0",
+    "@types/eslint": "^4.16.6",
     "@types/jest": "^24.0.15",
     "@types/lodash.get": "^4.4.6",
     "@types/node": "^12.6.8",
@@ -57,12 +59,22 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "@babel/preset-typescript": "^7.3.3",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "babel-eslint": "10.x",
     "babel-plugin-macros": "^2.6.1",
     "camelcase": "^5.3.1",
     "colorette": "^1.1.0",
     "cross-spawn": "^6.0.5",
     "decamelize": "^3.2.0",
     "dts-bundle-generator": "^3.1.0",
+    "eslint": "5.x",
+    "eslint-config-react-app": "^4.0.1",
+    "eslint-plugin-flowtype": "2.x",
+    "eslint-plugin-import": "2.x",
+    "eslint-plugin-jsx-a11y": "6.x",
+    "eslint-plugin-react": "7.x",
+    "eslint-plugin-react-hooks": "^1.6.1",
     "jest": "^24.8.0",
     "lodash.get": "^4.4.2",
     "prettier": "^1.18.2",
@@ -74,6 +86,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-terser": "^5.1.1",
-    "ts-jest": "^24.0.2"
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
   }
 }

@@ -1,0 +1,6 @@
+{
+  "extends": ["react-app"],
+  "settings": {
+    "react": { "version": "latest" }
+  }
+}
