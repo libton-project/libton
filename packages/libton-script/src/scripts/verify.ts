@@ -1,5 +1,6 @@
 import { CLIEngine } from 'eslint';
 import { paths } from '../config/paths';
+import spawn from 'cross-spawn';
 
 // Makes the script crash on unhandled rejections instead of silently
 // ignoring them. In the future, promise rejections that are not handled will
@@ -28,6 +29,28 @@ function lint() {
   }
 }
 
+function prettier(fix: boolean) {
+  const result = spawn.sync(
+    'node',
+    [
+      require.resolve('prettier/bin-prettier.js'),
+      fix ? '--write' : '--list-different',
+      'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}',
+    ],
+    { stdio: 'inherit' },
+  );
+  if (result.signal) {
+    process.exit(1);
+  }
+
+  if (result.status !== 0) {
+    process.exit(result.status || 1);
+  }
+}
+
+const scripts = ['lint', 'format', 'format:check'];
+const allowed = ['help', ...scripts];
+
 function help() {
   console.log(`
   libton-script verify
@@ -37,7 +60,7 @@ function help() {
     show this message
   
   libton-script verify [script|scripts]
-    run related scripts. allowed scripts: lint
+    run related scripts. allowed scripts: ${scripts.join(', ')}
   `);
 }
 
@@ -45,7 +68,6 @@ function verify() {
   console.log("let's clean the cups ☕");
 
   const args = process.argv.slice(3);
-  const allowed = ['help', 'lint'];
   args.forEach(arg => {
     if (!allowed.includes(arg)) {
       console.error(
@@ -58,6 +80,7 @@ function verify() {
   if (args.length === 0) {
     // run all
     lint();
+    prettier(false);
     return;
   }
   if (args.includes('help')) {
@@ -66,6 +89,12 @@ function verify() {
   }
   if (args.includes('lint')) {
     lint();
+  }
+  if (args.includes('format:check')) {
+    prettier(false);
+  }
+  if (args.includes('format')) {
+    prettier(true);
   }
 }
 
