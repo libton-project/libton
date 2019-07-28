@@ -15,7 +15,16 @@ import { BuildEnv } from '../types';
 import { generateDtsBundle } from 'dts-bundle-generator';
 import { format } from 'prettier';
 
-console.log("let's make a tea ☕");
+// Do this as the first thing so that any code reading it knows the right env.
+process.env.BABEL_ENV = 'production';
+process.env.NODE_ENV = 'production';
+
+// Makes the script crash on unhandled rejections instead of silently
+// ignoring them. In the future, promise rejections that are not handled will
+// terminate the Node.js process with a non-zero exit code.
+process.on('unhandledRejection', err => {
+  throw err;
+});
 
 function getFormat(env: BuildEnv) {
   switch (env) {
@@ -136,6 +145,8 @@ async function buildDts() {
 }
 
 async function buildAll() {
+  console.log("let's make a tea ☕");
+
   await build(BuildEnv.COMMON_JS);
   await build(BuildEnv.ES);
   await build(BuildEnv.ES_FOR_BROWSERS);
