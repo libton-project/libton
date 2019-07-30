@@ -46,6 +46,7 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "commander": "^2.20.0"
+    "commander": "^2.20.0",
+    "create-libton": "^0.0.1"
   }
 }

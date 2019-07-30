@@ -2,6 +2,7 @@
   "name": "create-libton",
   "version": "0.0.1",
   "description": "Create modern lib with no build configuration.",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/libton-project/libton",
@@ -11,7 +12,7 @@
   "files": [
     "src",
     "dist",
-    "templates"
+    "generator"
   ],
   "engines": {
     "node": ">=10"
@@ -20,9 +21,9 @@
     "create-libton": "./dist/bin/create-libton.js"
   },
   "scripts": {
-    "clean": "rimraf dist",
-    "prebuild": "rimraf dist",
-    "build": "tsc",
+    "clean": "rimraf dist && rimraf generator/sao",
+    "prebuild": "yarn clean",
+    "build": "tsc && mv dist/sao generator/",
     "prepublishOnly": "yarn build",
     "test": "jest",
     "pre-commit": "lint-staged",
@@ -45,5 +46,9 @@
     "rimraf": "^2.6.3",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "commander": "^2.20.0",
+    "sao": "^1.6.1"
   }
 }
