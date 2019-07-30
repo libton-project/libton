@@ -1,1 +1,6 @@
 node_modules
+dist/
+lib/
+es/
+coverage/
+index.d.ts
