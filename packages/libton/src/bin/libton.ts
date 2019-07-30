@@ -1,3 +1,5 @@
 #!/usr/bin/env node
 
-console.log('where is my tea ☕');
+import { libtonCli } from '..';
+
+libtonCli(process.argv, { extend: false });
