@@ -10,6 +10,8 @@ export interface Answers {
   website: string;
   filename: string;
   umdName: string;
+  cli: boolean;
+  cliName: string;
 }
 
 const latestVersions = async (dependencies: string[]) => {
@@ -47,7 +49,19 @@ export const updatePkg = async (answers: Answers, generator: Generator) => {
     unpkg: `dist/${filename}.js`,
     module: `es/${filename}.js`,
     typings: './index.d.ts',
-    files: ['dist', 'lib', 'es', 'src', 'index.d.ts'],
+    files: [
+      'dist',
+      'lib',
+      'es',
+      answers.cli && 'bin',
+      'src',
+      'index.d.ts',
+    ].filter(Boolean),
+    ...(answers.cli && {
+      bin: {
+        [answers.cliName]: `bin/${answers.cliName}.js`,
+      },
+    }),
     scripts: {
       build: 'libton-script build',
       test: 'libton-script test',

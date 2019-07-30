@@ -13,3 +13,7 @@ export function getFilename(packageName: string) {
 export function getName(packageName: string) {
   return camelcase(normalizeName(packageName), { pascalCase: true });
 }
+
+export function cliName(packageName: string) {
+  return decamelize(camelcase(normalizeName(packageName)), '-');
+}

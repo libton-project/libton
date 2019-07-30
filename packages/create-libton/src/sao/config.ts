@@ -1,5 +1,5 @@
-import { getFilename, getName } from './utils/name.utils';
-import { updatePkg } from './utils/update-pkg';
+import { cliName, getFilename, getName } from './utils/name.utils';
+import { Answers, updatePkg } from './utils/update-pkg';
 
 export const config = (): any => ({
   prompts() {
@@ -57,6 +57,20 @@ export const config = (): any => ({
           return getName(name);
         },
       },
+      {
+        name: 'cli',
+        message: 'Do you want to add a CLI',
+        type: 'confirm',
+        default: false,
+      },
+      {
+        name: 'cliName',
+        message: 'cli name',
+        default({ name }: { name: string }) {
+          return cliName(name);
+        },
+        when: (answer: Answers) => answer.cli,
+      },
     ];
   },
   actions() {
@@ -64,6 +78,9 @@ export const config = (): any => ({
       {
         type: 'add',
         files: '**',
+        filters: {
+          'src/bin/cli.ts': 'cli',
+        },
       },
       {
         type: 'move',
@@ -71,6 +88,13 @@ export const config = (): any => ({
           gitignore: '.gitignore',
           '_package.json': 'package.json',
         },
+      },
+      {
+        type: 'move',
+        patterns: {
+          'src/bin/cli.ts': `src/bin/${this.answers.cliName}.ts`,
+        },
+        when: 'cli',
       },
       {
         type: 'modify',
