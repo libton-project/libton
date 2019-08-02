@@ -9,7 +9,7 @@ import colorette from 'colorette';
 import { babelConfig } from '../config/babel-config';
 import path from 'path';
 import { promises as fs } from 'fs';
-import { paths } from '../config/paths';
+import { paths, resolveApp, resolveModule } from '../config/paths';
 import { config, LibtonConfig } from '../config/libton-config';
 import { BuildEnv } from '../types';
 import { generateDtsBundle } from 'dts-bundle-generator';
@@ -56,26 +56,47 @@ function getFile(env: BuildEnv, config: LibtonConfig) {
   }
 }
 
-function logStart(input: string, output: string) {
+function logStart(title: string, input: string | null, output: string | null) {
   const start = Date.now();
 
-  const inputFile = path.relative(paths.libRoot, input);
-  const outputFile = path.relative(paths.libRoot, output);
-  console.error(
-    colorette.cyan(
-      `\n${colorette.bold(inputFile)} → ${colorette.bold(outputFile)}`,
-    ),
-  );
+  console.error(); // empty new line
+  console.error(colorette.cyan(title));
 
-  return function logEnd() {
+  if (input && output) {
+    const inputFile = path.relative(paths.libRoot, input);
+    const outputFile = path.relative(paths.libRoot, output);
     console.error(
-      colorette.green(
-        `created ${colorette.bold(outputFile)} in ${colorette.bold(
-          ms(Date.now() - start),
-        )}`,
+      colorette.cyan(
+        `${colorette.bold(inputFile)} → ${colorette.bold(outputFile)}`,
       ),
     );
-  };
+
+    return function logEnd() {
+      console.error(
+        colorette.green(
+          `created ${colorette.bold(outputFile)} in ${colorette.bold(
+            ms(Date.now() - start),
+          )}`,
+        ),
+      );
+    };
+  }
+  return () => {};
+}
+
+function getTitle(env: BuildEnv) {
+  switch (env) {
+    case BuildEnv.COMMON_JS:
+      return 'common js:';
+    case BuildEnv.ES:
+      return 'es:';
+    case BuildEnv.ES_FOR_BROWSERS:
+      return 'es for browsers:';
+    case BuildEnv.UMD_DEVELOPMENT:
+      return 'umd development:';
+    case BuildEnv.UMD_PRODUCTION:
+      return 'umd production:';
+  }
 }
 
 async function build(env: BuildEnv) {
@@ -83,7 +104,8 @@ async function build(env: BuildEnv) {
     env === BuildEnv.ES_FOR_BROWSERS || env === BuildEnv.UMD_PRODUCTION;
   const file = getFile(env, config);
   const input = paths.libIndex;
-  const logEnd = logStart(input, file);
+  const title = getTitle(env);
+  const logEnd = logStart(title, input, file);
   const replaceNodeEnv =
     env === BuildEnv.ES_FOR_BROWSERS ||
     env === BuildEnv.UMD_DEVELOPMENT ||
@@ -127,8 +149,9 @@ async function build(env: BuildEnv) {
 async function buildDts() {
   const input = paths.libIndex;
   const output = paths.libDts;
+  const title = 'type definitions:';
 
-  const logEnd = logStart(input, output);
+  const logEnd = logStart(title, input, output);
   const outputs = generateDtsBundle([
     {
       filePath: input,
@@ -144,6 +167,74 @@ async function buildDts() {
   logEnd();
 }
 
+async function buildBins() {
+  for (const name in config.bin) {
+    const file = config.bin[name];
+    await buildBin(name, file);
+  }
+}
+
+async function buildBin(name: string, file: string) {
+  const title = `${colorette.bold(name)} binary:`;
+
+  if (!file.endsWith('.js')) {
+    logStart(title, null, null);
+    console.error(
+      colorette.yellow(`skip ${colorette.bold(file)}. (not a js file)`),
+    );
+    return;
+  }
+
+  const inputBasename = path.join('src', file.replace(/\.js$/, ''));
+
+  const input = resolveModule(resolveApp, inputBasename, null);
+  const output = file;
+  const logEnd = logStart(title, input, output);
+
+  if (file.startsWith('src/') || file.startsWith('./src/')) {
+    console.error(
+      colorette.red(
+        `${colorette.bold('bin.' + name)}: ${colorette.bold(
+          file,
+        )} starts with 'src/'. bin filepath shouldn't starts with src.`,
+      ),
+    );
+    process.exit(1);
+  }
+
+  if (input === null) {
+    console.error(
+      colorette.red(`${colorette.bold(inputBasename + '.ts')} not exists`),
+    );
+    process.exit(1);
+    return;
+  }
+
+  const bundle = await rollup({
+    input,
+    external: config.external,
+    plugins: [
+      resolve({
+        extensions: ['.mjs', '.js', '.jsx', '.json', '.ts', '.tsx'],
+      }),
+      commonjs(),
+      babel(babelConfig(BuildEnv.COMMON_JS)),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production'),
+      }),
+    ].filter(Boolean),
+  });
+  await bundle.write({
+    file,
+    format: 'cjs',
+    indent: false,
+    banner: '#!/usr/bin/env node', // make file executable
+    globals: config.globals,
+  });
+
+  logEnd();
+}
+
 async function buildAll() {
   console.log("let's make a tea ☕");
 
@@ -153,6 +244,7 @@ async function buildAll() {
   await build(BuildEnv.UMD_DEVELOPMENT);
   await build(BuildEnv.UMD_PRODUCTION);
   await buildDts();
+  await buildBins();
 }
 
 buildAll();

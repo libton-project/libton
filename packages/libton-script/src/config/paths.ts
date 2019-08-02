@@ -2,7 +2,7 @@ import path from 'path';
 import fs from 'fs';
 
 const appDirectory = fs.realpathSync(process.cwd());
-const resolveApp = (relativePath: string): string =>
+export const resolveApp = (relativePath: string): string =>
   path.resolve(appDirectory, relativePath);
 
 export const moduleFileExtensions = [
@@ -22,7 +22,22 @@ export const moduleFileExtensions = [
 type ResolveFn = (relativePath: string) => string;
 
 // Resolve file paths in the same order as webpack
-const resolveModule = (resolveFn: ResolveFn, filePath: string) => {
+export function resolveModule(resolveFn: ResolveFn, filePath: string): string;
+export function resolveModule(
+  resolveFn: ResolveFn,
+  filePath: string,
+  fallback: string,
+): string;
+export function resolveModule(
+  resolveFn: ResolveFn,
+  filePath: string,
+  fallback: null,
+): string | null;
+export function resolveModule(
+  resolveFn: ResolveFn,
+  filePath: string,
+  fallback: string | null = '.js',
+): string | null {
   const extension = moduleFileExtensions.find(extension =>
     fs.existsSync(resolveFn(`${filePath}.${extension}`)),
   );
@@ -31,8 +46,12 @@ const resolveModule = (resolveFn: ResolveFn, filePath: string) => {
     return resolveFn(`${filePath}.${extension}`);
   }
 
-  return resolveFn(`${filePath}.js`);
-};
+  if (fallback === null) {
+    return null;
+  }
+
+  return resolveFn(`${filePath}${fallback}`);
+}
 
 export const paths = {
   libRoot: resolveApp(''),

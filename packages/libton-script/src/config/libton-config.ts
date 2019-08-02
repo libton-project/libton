@@ -9,6 +9,7 @@ export interface LibtonConfig {
   name: string;
   external: string[];
   globals: Record<string, string>;
+  bin: Record<string, string>;
 }
 
 function getLibtonConfig(): LibtonConfig {
@@ -24,12 +25,15 @@ function getLibtonConfig(): LibtonConfig {
     ...Object.keys(libPackage.peerDependencies || {}),
   ];
   const globals = get(libPackage, ['libton', 'globals'], {});
+  const bin = get(libPackage, ['bin'], {});
+
   return {
     packageName,
     filename,
     name,
     external,
     globals,
+    bin,
   };
 }
 
