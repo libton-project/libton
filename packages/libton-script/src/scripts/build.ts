@@ -155,6 +155,9 @@ async function buildDts() {
   const outputs = generateDtsBundle([
     {
       filePath: input,
+      libraries: {
+        importedLibraries: config.external,
+      },
     },
   ]);
   const content = outputs[0];
@@ -238,12 +241,12 @@ async function buildBin(name: string, file: string) {
 async function buildAll() {
   console.log("let's make a tea ☕");
 
+  await buildDts();
   await build(BuildEnv.COMMON_JS);
   await build(BuildEnv.ES);
   await build(BuildEnv.ES_FOR_BROWSERS);
   await build(BuildEnv.UMD_DEVELOPMENT);
   await build(BuildEnv.UMD_PRODUCTION);
-  await buildDts();
   await buildBins();
 }
 
