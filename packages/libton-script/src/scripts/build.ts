@@ -1,11 +1,10 @@
-import ms from 'pretty-ms';
 import { rollup } from 'rollup';
 import { terser } from 'rollup-plugin-terser';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
-import colorette from 'colorette';
+import clr from 'colorette';
 import { babelConfig } from '../config/babel-config';
 import path from 'path';
 import { promises as fs } from 'fs';
@@ -14,6 +13,7 @@ import { config, LibtonConfig } from '../config/libton-config';
 import { BuildEnv } from '../types';
 import { generateDtsBundle } from 'dts-bundle-generator';
 import { format } from 'prettier';
+import { BuildLogger } from '../utils/BuildLogger';
 
 // Do this as the first thing so that any code reading it knows the right env.
 process.env.BABEL_ENV = 'production';
@@ -56,34 +56,6 @@ function getFile(env: BuildEnv, config: LibtonConfig) {
   }
 }
 
-function logStart(title: string, input: string | null, output: string | null) {
-  const start = Date.now();
-
-  console.error(); // empty new line
-  console.error(colorette.cyan(title));
-
-  if (input && output) {
-    const inputFile = path.relative(paths.libRoot, input);
-    const outputFile = path.relative(paths.libRoot, output);
-    console.error(
-      colorette.cyan(
-        `${colorette.bold(inputFile)} → ${colorette.bold(outputFile)}`,
-      ),
-    );
-
-    return function logEnd() {
-      console.error(
-        colorette.green(
-          `created ${colorette.bold(outputFile)} in ${colorette.bold(
-            ms(Date.now() - start),
-          )}`,
-        ),
-      );
-    };
-  }
-  return () => {};
-}
-
 function getTitle(env: BuildEnv) {
   switch (env) {
     case BuildEnv.COMMON_JS:
@@ -105,7 +77,10 @@ async function build(env: BuildEnv) {
   const file = getFile(env, config);
   const input = paths.libIndex;
   const title = getTitle(env);
-  const logEnd = logStart(title, input, file);
+  const logger = new BuildLogger({ base: paths.libRoot });
+  logger.start();
+  logger.title(title);
+  logger.convert(input, file);
   const replaceNodeEnv =
     env === BuildEnv.ES_FOR_BROWSERS ||
     env === BuildEnv.UMD_DEVELOPMENT ||
@@ -143,7 +118,7 @@ async function build(env: BuildEnv) {
     globals: config.globals,
     name: config.name,
   });
-  logEnd();
+  logger.completed();
 }
 
 async function buildDts() {
@@ -151,7 +126,10 @@ async function buildDts() {
   const output = paths.libDts;
   const title = 'type definitions:';
 
-  const logEnd = logStart(title, input, output);
+  const logger = new BuildLogger({ base: paths.libRoot });
+  logger.start();
+  logger.title(title);
+  logger.convert(input, output);
   const outputs = generateDtsBundle([
     {
       filePath: input,
@@ -167,7 +145,7 @@ async function buildDts() {
     trailingComma: 'all',
   });
   await fs.writeFile(output, prettyContent);
-  logEnd();
+  logger.completed();
 }
 
 async function buildBins() {
@@ -178,26 +156,21 @@ async function buildBins() {
 }
 
 async function buildBin(name: string, file: string) {
-  const title = `${colorette.bold(name)} binary:`;
+  const title = `${clr.bold(name)} binary:`;
+
+  const logger = new BuildLogger({ base: paths.libRoot });
+  logger.start();
+  logger.title(title);
 
   if (!file.endsWith('.js')) {
-    logStart(title, null, null);
-    console.error(
-      colorette.yellow(`skip ${colorette.bold(file)}. (not a js file)`),
-    );
+    console.error(clr.yellow(`skip ${clr.bold(file)}. (not a js file)`));
     return;
   }
 
-  const inputBasename = path.join('src', file.replace(/\.js$/, ''));
-
-  const input = resolveModule(resolveApp, inputBasename, null);
-  const output = file;
-  const logEnd = logStart(title, input, output);
-
   if (file.startsWith('src/') || file.startsWith('./src/')) {
     console.error(
-      colorette.red(
-        `${colorette.bold('bin.' + name)}: ${colorette.bold(
+      clr.red(
+        `${clr.bold('bin.' + name)}: ${clr.bold(
           file,
         )} starts with 'src/'. bin filepath shouldn't starts with src.`,
       ),
@@ -205,13 +178,17 @@ async function buildBin(name: string, file: string) {
     process.exit(1);
   }
 
+  const inputBasename = path.join('src', file.replace(/\.js$/, ''));
+  const input = resolveModule(resolveApp, inputBasename, null);
+  const output = file;
+
   if (input === null) {
-    console.error(
-      colorette.red(`${colorette.bold(inputBasename + '.ts')} not exists`),
-    );
+    console.error(clr.red(`${clr.bold(inputBasename + '.ts')} not exists`));
     process.exit(1);
     return;
   }
+
+  logger.convert(input, output);
 
   const bundle = await rollup({
     input,
@@ -235,7 +212,7 @@ async function buildBin(name: string, file: string) {
     globals: config.globals,
   });
 
-  logEnd();
+  logger.completed();
 }
 
 async function buildAll() {
