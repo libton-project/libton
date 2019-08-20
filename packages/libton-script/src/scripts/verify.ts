@@ -12,7 +12,7 @@ process.on('unhandledRejection', err => {
 function lint() {
   const cliEngine = new CLIEngine({
     baseConfig: {
-      extends: ['react-app'],
+      extends: ['plugin:react-app/recommended'],
       settings: {
         react: { version: 'latest' },
       },
