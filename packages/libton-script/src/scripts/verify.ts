@@ -29,13 +29,15 @@ function lint() {
   }
 }
 
-function prettier(fix: boolean) {
+function prettier(fix: boolean, files: string[] = []) {
   const result = spawn.sync(
     'node',
     [
       require.resolve('prettier/bin-prettier.js'),
       fix ? '--write' : '--list-different',
-      'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}',
+      ...(files.length === 0
+        ? ['**/*.{js,jsx,ts,tsx,json,css,scss,md}']
+        : files),
     ],
     { stdio: 'inherit' },
   );
@@ -59,7 +61,7 @@ function help() {
   libton-script verify help
     show this message
   
-  libton-script verify [script|scripts]
+  libton-script verify [script]
     run related scripts. allowed scripts: ${scripts.join(', ')}
   `);
 }
@@ -68,33 +70,33 @@ function verify() {
   console.log("let's clean the cups ☕");
 
   const args = process.argv.slice(3);
-  args.forEach(arg => {
-    if (!allowed.includes(arg)) {
-      console.error(
-        `Invalid arguments ${arg}. only ${allowed.join('|')} arg is allowed`,
-      );
-      help();
-      process.exit(2);
-    }
-  });
+  const arg = args[0];
+  if (!allowed.includes(args[0])) {
+    console.error(
+      `Invalid arguments ${arg}. only ${allowed.join('|')} arg is allowed`,
+    );
+    help();
+    process.exit(2);
+  }
+
   if (args.length === 0) {
     // run all
     lint();
     prettier(false);
     return;
   }
-  if (args.includes('help')) {
+  if (arg === 'help') {
     help();
     return;
   }
-  if (args.includes('lint')) {
+  if (arg === 'lint') {
     lint();
   }
-  if (args.includes('format:check')) {
+  if (arg === 'format:check') {
     prettier(false);
   }
-  if (args.includes('format')) {
-    prettier(true);
+  if (arg === 'format') {
+    prettier(true, args.slice(1));
   }
 }
 
