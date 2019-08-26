@@ -14,8 +14,8 @@
 ## Usage
 
 ```js
-const <%= umdName %> = require('<%= name %>')
+const <%= umdName %> = require('<%= name %>');
 
-<%= umdName %>()
+<%= umdName %>();
 //=> foo
 ```
