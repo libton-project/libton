@@ -1,5 +1,5 @@
 import { getFilename, getName } from '../utils/name.utils';
-import get from 'lodash.get';
+import get from 'lodash/get';
 import { paths } from './paths';
 import readPkg from 'read-pkg';
 

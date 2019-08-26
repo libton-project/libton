@@ -1,9 +1,11 @@
-import { paths } from '../../config/paths';
+import { paths, resolveApp } from '../../config/paths';
 import { BuildLogger } from '../BuildLogger';
-import { generateDtsBundle } from 'dts-bundle-generator';
-import { config } from '../../config/libton-config';
-import { format } from 'prettier';
-import { promises as fs } from 'fs';
+import {
+  Extractor,
+  ExtractorConfig,
+  ExtractorResult,
+} from '@microsoft/api-extractor';
+import { buildTs } from './buildTs';
 
 export async function buildDts() {
   const input = paths.libIndex;
@@ -14,20 +16,46 @@ export async function buildDts() {
   logger.start();
   logger.title(title);
   logger.convert(input, output);
-  const outputs = generateDtsBundle([
-    {
-      filePath: input,
-      libraries: {
-        importedLibraries: config.external,
+  await buildTs();
+  const extractorConfig: ExtractorConfig = ExtractorConfig.prepare({
+    configObject: {
+      projectFolder: paths.libRoot,
+      mainEntryPointFilePath: resolveApp('.cache/build/index.d.ts'),
+      dtsRollup: {
+        enabled: true,
+        untrimmedFilePath: output,
+      },
+      compiler: {
+        tsconfigFilePath: resolveApp('tsconfig.json'),
+        overrideTsconfig: {
+          compilerOptions: {
+            isolatedModules: false,
+            declaration: true,
+            declarationMap: true,
+            module: 'commonjs',
+            outDir: '.cache/build',
+            sourceMap: true,
+            noEmit: false,
+          },
+        },
       },
     },
-  ]);
-  const content = outputs[0];
-  const prettyContent = format(content, {
-    parser: 'typescript',
-    singleQuote: true,
-    trailingComma: 'all',
+    configObjectFullPath: undefined,
+    packageJsonFullPath: paths.libPackage,
   });
-  await fs.writeFile(output, prettyContent);
+
+  const extractorResult: ExtractorResult = Extractor.invoke(extractorConfig, {
+    localBuild: true,
+    showVerboseMessages: true,
+  });
+
+  if (!extractorResult.succeeded) {
+    logger.error(
+      `API Extractor completed with ${extractorResult.errorCount} errors` +
+        ` and ${extractorResult.warningCount} warnings`,
+    );
+    process.exit(1);
+  }
+
   logger.completed();
 }
