@@ -1,0 +1,45 @@
+{
+  "name": "@libton/share",
+  "description": "shared logic for libton",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "lib/libton-share.js",
+  "unpkg": "dist/libton-share.js",
+  "module": "es/libton-share.js",
+  "typings": "./index.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "build": "libton-script build",
+    "test": "libton-script test",
+    "lint": "libton-script lint",
+    "format": "libton-script format",
+    "format:check": "libton-script format --check",
+    "pre-commit": "lint-staged",
+    "validate": "libton-script lint && libton-script format --check && libton-script test",
+    "prepublishOnly": "yarn validate && yarn build"
+  },
+  "lint-staged": {
+    "**/*.{js,ts,md}": [
+      "libton-script format",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.18",
+    "libton-script": "0.4.0"
+  },
+  "libton": {
+    "filename": "libton-share",
+    "name": "LibtonShare"
+  },
+  "dependencies": {
+    "camelcase": "^5.3.1",
+    "decamelize": "^3.2.0"
+  }
+}
