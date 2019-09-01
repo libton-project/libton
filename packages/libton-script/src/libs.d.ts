@@ -8,3 +8,4 @@ declare module '@babel/preset-typescript';
 declare module '@rollup-plugin-babel';
 declare module 'babel-plugin-macros';
 declare module 'rollup-plugin-babel';
+declare module 'commander-remaining-args';

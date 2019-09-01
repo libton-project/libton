@@ -65,10 +65,11 @@ export const updatePkg = async (answers: Answers, generator: Generator) => {
     scripts: {
       build: 'libton-script build',
       test: 'libton-script test',
-      lint: 'libton-script verify lint',
-      format: 'libton-script verify format',
-      'format:check': 'libton-script verify format:check',
-      validate: 'libton-script verify && libton-script test',
+      lint: 'libton-script lint',
+      format: 'libton-script format',
+      'format:check': 'libton-script format --check',
+      validate:
+        'libton-script lint && libton-script format --check && libton-script test',
       prepublishOnly: `${pmRun} validate && ${pmRun} build`,
     },
     devDependencies,

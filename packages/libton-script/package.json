@@ -16,7 +16,7 @@
     "node": ">=10"
   },
   "bin": {
-    "libton-script": "./dist/bin/libton-scripts.js"
+    "libton-script": "./dist/bin/libton-script.js"
   },
   "scripts": {
     "clean": "rimraf dist",

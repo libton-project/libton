@@ -1,23 +1,18 @@
-// Do this as the first thing so that any code reading it knows the right env.
-import jest from 'jest';
+import { moduleFileExtensions, paths } from '../../config/paths';
 import fs from 'fs';
-import { moduleFileExtensions, paths } from '../config/paths';
+import jest from 'jest';
 
-process.env.BABEL_ENV = 'test';
-process.env.NODE_ENV = 'test';
-
-// Makes the script crash on unhandled rejections instead of silently
-// ignoring them. In the future, promise rejections that are not handled will
-// terminate the Node.js process with a non-zero exit code.
-process.on('unhandledRejection', err => {
-  throw err;
-});
-
-function test() {
+export interface LibtonTestOptions {}
+export async function libtonTest(
+  jestOptions: string[],
+  options: LibtonTestOptions,
+) {
   console.log("let's taste the tea ☕");
 
-  let argv = process.argv.slice(2);
+  process.env.BABEL_ENV = 'test';
+  process.env.NODE_ENV = 'test';
 
+  const argv = [...jestOptions];
   // Use this instead of `paths.testsSetup` to avoid putting
   // an absolute filename into configuration
   const setupTestsMatches = paths.testsSetup.match(/src[/\\]setupTests\.(.+)/);
@@ -50,5 +45,3 @@ function test() {
 
   jest.run(argv);
 }
-
-test();
