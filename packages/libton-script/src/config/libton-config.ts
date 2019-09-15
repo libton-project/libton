@@ -1,4 +1,4 @@
-import { getFilename, getName } from '../utils/name.utils';
+import { getFilename, getName } from '@libton/share';
 import get from 'lodash/get';
 import { paths } from './paths';
 import readPkg from 'read-pkg';
