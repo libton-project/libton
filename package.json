@@ -20,7 +20,7 @@
   },
   "scripts": {
     "commit": "git-cz",
-    "update-version": "cross-env HUSKY_BYPASS=true lerna version",
+    "update-version": "cross-env HUSKY_BYPASS=true GH_TOKEN=`cat GH_TOKEN` lerna version",
     "release": "cross-env HUSKY_BYPASS=true lerna publish from-git"
   },
   "commitlint": {
