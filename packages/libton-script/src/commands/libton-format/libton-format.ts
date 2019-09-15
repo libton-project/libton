@@ -1,17 +1,18 @@
 import spawn from 'cross-spawn';
 
 export interface LibtonFormatOptions {
-  check: boolean;
+  check?: boolean;
 }
 export async function libtonFormat(
   files: string[],
-  options: LibtonFormatOptions,
+  options: LibtonFormatOptions = {},
 ) {
+  const { check } = options;
   const result = spawn.sync(
     'node',
     [
       require.resolve('prettier/bin-prettier.js'),
-      options.check ? '--check' : '--write',
+      check ? '--check' : '--write',
       ...(files.length === 0
         ? ['**/*.{js,jsx,ts,tsx,json,css,scss,md}']
         : files),
