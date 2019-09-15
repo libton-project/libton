@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/libton-project/libton/compare/create-libton@0.2.0...create-libton@0.2.1) (2019-09-15)
+
+**Note:** Version bump only for package create-libton
+
+
+
+
+
 # [0.2.0](https://github.com/libton-project/libton/compare/create-libton@0.1.1...create-libton@0.2.0) (2019-09-15)
 
 

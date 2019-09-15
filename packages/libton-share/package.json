@@ -1,7 +1,7 @@
 {
   "name": "@libton/share",
   "description": "shared logic for libton",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "lib/libton-share.js",
   "unpkg": "dist/libton-share.js",
@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@types/jest": "24.0.18",
-    "libton-script": "0.4.0"
+    "libton-script": "^0.5.0"
   },
   "libton": {
     "filename": "libton-share",
