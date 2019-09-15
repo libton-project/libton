@@ -1,4 +1,4 @@
-import { cliName, getFilename, getName } from './utils/name.utils';
+import { getCliName, getFilename, getName } from '@libton/share';
 import { Answers, updatePkg } from './utils/update-pkg';
 import { isInsideGitRepo } from './utils/git.utils';
 
@@ -46,7 +46,7 @@ export const config = (): any => ({
         name: 'cliName',
         message: 'cli name',
         default({ name }: { name: string }) {
-          return cliName(name);
+          return getCliName(name);
         },
         when: (answer: Answers) => answer.cli,
       },
