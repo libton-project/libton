@@ -4,8 +4,12 @@
   "packages": ["packages/*"],
   "version": "independent",
   "command": {
+    "version": {
+      "message": "chore: publish"
+    },
     "publish": {
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "createRelease": "github"
     }
   }
 }
