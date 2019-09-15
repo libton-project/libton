@@ -15,33 +15,11 @@ export const config = (): any => ({
         default: `my great project`,
       },
       {
-        name: 'author',
-        message: 'What is your name',
+        name: 'license',
+        message: 'License',
         default: this.gitUser.name,
         store: true,
         required: true,
-      },
-      {
-        name: 'username',
-        message: 'What is your GitHub username',
-        default: ({ author }: { author: string }) =>
-          this.gitUser.username || author.toLowerCase(),
-        store: true,
-      },
-      {
-        name: 'email',
-        message: 'What is your GitHub email',
-        default: this.gitUser.email,
-        store: true,
-        validate: (v: string) => /.+@.+/.test(v),
-      },
-      {
-        name: 'website',
-        message: 'What is the url of your website',
-        default({ username }: { username: string }) {
-          return `https://github.com/${username}`;
-        },
-        store: true,
       },
       {
         name: 'filename',
