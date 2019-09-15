@@ -1,5 +1,6 @@
 import { cliName, getFilename, getName } from './utils/name.utils';
 import { Answers, updatePkg } from './utils/update-pkg';
+import { isInsideGitRepo } from './utils/git.utils';
 
 export const config = (): any => ({
   prompts() {
@@ -84,7 +85,9 @@ export const config = (): any => ({
     ];
   },
   async completed() {
-    this.gitInit();
+    if (!isInsideGitRepo(this.outDir)) {
+      this.gitInit();
+    }
     await this.npmInstall();
     this.showProjectTips();
   },
