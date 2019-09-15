@@ -6,6 +6,7 @@ import {
   ExtractorResult,
 } from '@microsoft/api-extractor';
 import { buildTs } from './buildTs';
+import { libtonFormat } from '../../commands/libton-format/libton-format';
 
 export async function buildDts() {
   const input = paths.libIndex;
@@ -56,6 +57,8 @@ export async function buildDts() {
     );
     process.exit(1);
   }
+
+  await libtonFormat([paths.libDts]);
 
   logger.completed();
 }
