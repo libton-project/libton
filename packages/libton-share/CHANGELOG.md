@@ -12,9 +12,3 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 - **share:** init @libton/share package ([b9fd4d4](https://github.com/libton-project/libton/commit/b9fd4d4))
-
-# 0.1.0 (2019-09-15)
-
-### Features
-
-- **share:** init @libton/share package ([b9fd4d4](https://github.com/libton-project/libton/commit/b9fd4d4))

@@ -5,46 +5,22 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # 0.7.0 (2019-09-20)
 
-
 ### Bug Fixes
 
-* **libton-script:** handle unhandledRejection in build script ([3bcdad1](https://github.com/libton-project/libton/commit/3bcdad1))
-* **libton-script:** improve generated index.d.ts ([36b0901](https://github.com/libton-project/libton/commit/36b0901))
-* remove husky from packages ([a50cb61](https://github.com/libton-project/libton/commit/a50cb61))
-
-
-### Features
-
-* **libton-script:** add empty build and test scripts ([a750757](https://github.com/libton-project/libton/commit/a750757))
-* **libton-script:** add eslint to verify script ([2729282](https://github.com/libton-project/libton/commit/2729282))
-* **libton-script:** add prettier to verify script ([c5d38f7](https://github.com/libton-project/libton/commit/c5d38f7))
-* **libton-script:** add verify script ([cd7eb7a](https://github.com/libton-project/libton/commit/cd7eb7a))
-* **libton-script:** format index.d.ts file after build ([4ed077d](https://github.com/libton-project/libton/commit/4ed077d))
-* **libton-script:** generate index.d.ts in build process ([7054314](https://github.com/libton-project/libton/commit/7054314))
-* **libton-script:** implement build script ([651c922](https://github.com/libton-project/libton/commit/651c922))
-* **libton-script:** implement test script ([b7ab6f5](https://github.com/libton-project/libton/commit/b7ab6f5))
-* **libton-script:** improve format command ([68eac01](https://github.com/libton-project/libton/commit/68eac01))
-* **libton-script:** init libton-script package ([7c6efb9](https://github.com/libton-project/libton/commit/7c6efb9))
-* **libton-script:** support bin in build command ([6aa5bbf](https://github.com/libton-project/libton/commit/6aa5bbf))
-
-
-
-
-
-# [0.5.0](https://github.com/libton-project/libton/compare/libton-script@0.4.0...libton-script@0.5.0) (2019-09-15)
-
+- **libton-script:** handle unhandledRejection in build script ([3bcdad1](https://github.com/libton-project/libton/commit/3bcdad1))
+- **libton-script:** improve generated index.d.ts ([36b0901](https://github.com/libton-project/libton/commit/36b0901))
+- remove husky from packages ([a50cb61](https://github.com/libton-project/libton/commit/a50cb61))
 
 ### Features
 
-* **libton-script:** format index.d.ts file after build ([4ed077d](https://github.com/libton-project/libton/commit/4ed077d))
-
-
-
-
-
-# [0.4.0](https://github.com/libton-project/libton/compare/libton-script@0.3.2...libton-script@0.4.0) (2019-09-15)
-
-
-### Features
-
-* **libton-script:** improve format command ([68eac01](https://github.com/libton-project/libton/commit/68eac01))
+- **libton-script:** add empty build and test scripts ([a750757](https://github.com/libton-project/libton/commit/a750757))
+- **libton-script:** add eslint to verify script ([2729282](https://github.com/libton-project/libton/commit/2729282))
+- **libton-script:** add prettier to verify script ([c5d38f7](https://github.com/libton-project/libton/commit/c5d38f7))
+- **libton-script:** add verify script ([cd7eb7a](https://github.com/libton-project/libton/commit/cd7eb7a))
+- **libton-script:** format index.d.ts file after build ([4ed077d](https://github.com/libton-project/libton/commit/4ed077d))
+- **libton-script:** generate index.d.ts in build process ([7054314](https://github.com/libton-project/libton/commit/7054314))
+- **libton-script:** implement build script ([651c922](https://github.com/libton-project/libton/commit/651c922))
+- **libton-script:** implement test script ([b7ab6f5](https://github.com/libton-project/libton/commit/b7ab6f5))
+- **libton-script:** improve format command ([68eac01](https://github.com/libton-project/libton/commit/68eac01))
+- **libton-script:** init libton-script package ([7c6efb9](https://github.com/libton-project/libton/commit/7c6efb9))
+- **libton-script:** support bin in build command ([6aa5bbf](https://github.com/libton-project/libton/commit/6aa5bbf))
