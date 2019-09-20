@@ -31,8 +31,7 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "24.0.18",
-    "libton-script": "^0.5.0"
+    "@types/jest": "24.0.18"
   },
   "libton": {
     "filename": "libton-share",
