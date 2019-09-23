@@ -87,9 +87,5 @@ export const updatePkg = async (answers: Answers, generator: Generator) => {
       prepublishOnly: `${pmRun} validate && ${pmRun} build`,
     },
     devDependencies,
-    libton: {
-      filename,
-      name: umdName,
-    },
   };
 };
