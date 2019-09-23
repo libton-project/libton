@@ -36,6 +36,7 @@
     ]
   },
   "devDependencies": {
+    "@types/cosmiconfig": "^5.0.3",
     "@types/cross-spawn": "^6.0.0",
     "@types/eslint": "^6.1.1",
     "@types/jest": "^24.0.18",
@@ -65,6 +66,7 @@
     "colorette": "^1.1.0",
     "commander": "^3.0.0",
     "commander-remaining-args": "^1.2.0",
+    "cosmiconfig": "^5.2.1",
     "cross-spawn": "^7.0.0",
     "decamelize": "^3.2.0",
     "eslint": "^6.2.2",

@@ -1,3 +1,4 @@
+import cosmiconfig from 'cosmiconfig';
 import { getFilename, getName } from '@libton/share';
 import get from 'lodash/get';
 import { paths } from './paths';
@@ -16,15 +17,22 @@ function getLibtonConfig(): LibtonConfig {
   const libPackage = readPkg.sync({ cwd: paths.libRoot });
   const packageName = libPackage.name;
   const defaultFileName = getFilename(packageName);
-  const defaultVariableName = getName(packageName);
+  const defaultName = getName(packageName);
 
-  const filename = get(libPackage, ['libton', 'filename'], defaultFileName);
-  const name = get(libPackage, ['libton', 'name'], defaultVariableName);
   const external = [
     ...Object.keys(libPackage.dependencies || {}),
     ...Object.keys(libPackage.peerDependencies || {}),
   ];
-  const globals = get(libPackage, ['libton', 'globals'], {});
+
+  const result = cosmiconfig('libton').searchSync(paths.libRoot);
+  const config = result ? result.config : {};
+
+  const {
+    name = defaultName,
+    filename = defaultFileName,
+    globals = {},
+  } = config;
+
   const bin = get(libPackage, ['bin'], {});
 
   return {
