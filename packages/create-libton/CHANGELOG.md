@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.9.0](https://github.com/libton-project/libton/compare/v0.8.0...v0.9.0) (2019-09-23)
+
+
+### Features
+
+* **create-libton:** create .libtonrc.yml by default ([338fd64](https://github.com/libton-project/libton/commit/338fd64))
+
+
+
+
+
 # [0.8.0](https://github.com/libton-project/libton/compare/v0.7.0...v0.8.0) (2019-09-23)
 
 
