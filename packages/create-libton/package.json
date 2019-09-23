@@ -50,6 +50,7 @@
   "dependencies": {
     "@libton/share": "^0.7.0",
     "commander": "^3.0.0",
+    "find-up": "^4.1.0",
     "latest-version": "^5.1.0",
     "sao": "^1.6.1"
   }

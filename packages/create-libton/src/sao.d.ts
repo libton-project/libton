@@ -14,5 +14,14 @@ declare module 'sao' {
 
   export interface Generator {
     npmClient: 'npm' | 'yarn';
+    outDir: string;
+    logger: {
+      debug(...args: any[]): void;
+      warn(...args: any[]): void;
+      error(...args: any[]): void;
+      success(...args: any[]): void;
+      tip(...args: any[]): void;
+      info(...args: any[]): void;
+    };
   }
 }

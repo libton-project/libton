@@ -12,6 +12,8 @@ export interface Answers {
   umdName: string;
   cli: boolean;
   cliName: string;
+  preCommit: boolean;
+  monoRepo: boolean;
 }
 
 const latestVersions = async (dependencies: string[]) => {
@@ -30,14 +32,25 @@ const latestVersions = async (dependencies: string[]) => {
 };
 
 export const updatePkg = async (answers: Answers, generator: Generator) => {
-  const { name, description, filename, umdName } = answers;
-
+  const { name, description, filename, umdName, preCommit, monoRepo } = answers;
   const devDependencies = await latestVersions([
     '@types/jest',
     'libton-script',
+    ...((preCommit && !monoRepo && ['husky']) || []),
+    ...((preCommit && ['lint-staged']) || []),
   ]);
 
-  console.log(generator.npmClient);
+  if (preCommit && monoRepo) {
+    generator.logger.warn();
+    generator.logger.warn(
+      '⚠️  husky should be installed at the root of mono-repo manually',
+    );
+    generator.logger.warn();
+    generator.logger.warn(
+      'read more: https://github.com/libton-project/libton/wiki/Monorepo',
+    );
+    generator.logger.warn();
+  }
   const pmRun = generator.npmClient === 'npm' ? 'npm run' : 'yarn';
 
   return {
@@ -70,6 +83,7 @@ export const updatePkg = async (answers: Answers, generator: Generator) => {
       'format:check': 'libton-script format --check',
       validate:
         'libton-script lint && libton-script format --check && libton-script test',
+      ...(preCommit && monoRepo && { 'pre-commit': 'lint-staged' }),
       prepublishOnly: `${pmRun} validate && ${pmRun} build`,
     },
     devDependencies,
