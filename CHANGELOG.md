@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.8.0](https://github.com/libton-project/libton/compare/v0.7.0...v0.8.0) (2019-09-23)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([6869c88](https://github.com/libton-project/libton/commit/6869c88))
+
+
+### Features
+
+* **create-libton:** improve generated readme file ([d0f1f72](https://github.com/libton-project/libton/commit/d0f1f72))
+* **create-libton:** support husky and lint-staged ([a589b9d](https://github.com/libton-project/libton/commit/a589b9d))
+
+
+
+
+
 # 0.7.0 (2019-09-20)
 
 

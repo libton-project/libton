@@ -1,6 +1,6 @@
 {
   "name": "create-libton",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Create modern lib with no build configuration.",
   "main": "dist/index.js",
   "repository": {
@@ -47,7 +47,7 @@
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "@libton/share": "^0.7.0",
+    "@libton/share": "^0.8.0",
     "commander": "^3.0.0",
     "find-up": "^4.1.0",
     "latest-version": "^5.1.0",
