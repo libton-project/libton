@@ -20,22 +20,13 @@
     "lint": "libton-script lint",
     "format": "libton-script format",
     "format:check": "libton-script format --check",
-    "pre-commit": "lint-staged",
     "validate": "libton-script lint && libton-script format --check && libton-script test",
+    "pre-commit": "lint-staged",
     "prepublishOnly": "yarn validate && yarn build"
   },
-  "lint-staged": {
-    "**/*.{js,ts,md}": [
-      "libton-script format",
-      "git add"
-    ]
-  },
   "devDependencies": {
-    "@types/jest": "24.0.18"
-  },
-  "libton": {
-    "filename": "libton-share",
-    "name": "LibtonShare"
+    "@types/jest": "24.0.18",
+    "lint-staged": "9.3.0"
   },
   "dependencies": {
     "camelcase": "^5.3.1",
