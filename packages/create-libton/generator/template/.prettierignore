@@ -1,6 +1,6 @@
-dist/
-lib/
-es/
-bin/
-coverage/
-.cache/
+/dist/
+/lib/
+/es/
+/bin/
+/coverage/
+/.cache/

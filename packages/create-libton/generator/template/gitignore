@@ -1,8 +1,8 @@
 node_modules
-dist/
-lib/
-es/
-bin/
-coverage/
-.cache/
-index.d.ts
+/dist/
+/lib/
+/es/
+/bin/
+/coverage/
+/.cache/
+/index.d.ts
