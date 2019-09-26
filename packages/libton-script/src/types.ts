@@ -1,5 +1,6 @@
 export enum BuildEnv {
   COMMON_JS = 'COMMON_JS',
+  BIN = 'BIN',
   ES = 'ES',
   ES_FOR_BROWSERS = 'ES_FOR_BROWSERS',
   UMD_DEVELOPMENT = 'UMD_DEVELOPMENT',

@@ -38,6 +38,8 @@ function getFile(env: BuildEnv, config: LibtonConfig) {
       return path.join(paths.outputDirs.dist, config.filename + '.js');
     case BuildEnv.UMD_PRODUCTION:
       return path.join(paths.outputDirs.dist, config.filename + '.min.js');
+    default:
+      throw new Error('Invalid env param');
   }
 }
 
@@ -53,6 +55,8 @@ function getTitle(env: BuildEnv) {
       return 'umd development:';
     case BuildEnv.UMD_PRODUCTION:
       return 'umd production:';
+    default:
+      throw new Error('Invalid env param');
   }
 }
 

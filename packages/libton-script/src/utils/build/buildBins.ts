@@ -61,7 +61,7 @@ async function buildBin(name: string, file: string) {
         extensions: ['.mjs', '.js', '.jsx', '.json', '.ts', '.tsx'],
       }),
       commonjs(),
-      babel(babelConfig(BuildEnv.COMMON_JS)),
+      babel(babelConfig(BuildEnv.BIN)),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),
