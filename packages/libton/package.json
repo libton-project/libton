@@ -36,16 +36,16 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.2",
+    "@types/node": "^12.7.8",
     "jest": "^24.9.0",
-    "lint-staged": "^9.3.0",
+    "lint-staged": "^9.4.0",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
     "ts-jest": "^24.0.2",
     "typescript": "^3.5.3"
   },
   "dependencies": {
-    "commander": "^3.0.0",
+    "commander": "^3.0.2",
     "create-libton": "^0.9.1"
   }
 }
