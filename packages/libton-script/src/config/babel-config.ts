@@ -42,12 +42,7 @@ export function babelConfig(env: BuildEnv) {
       [macrosPlugin],
       [destructuringPlugin, { loose: false }],
       [decoratorsPlugin, { legacy: true }],
-      [
-        classPropertiesPlugin,
-        // {
-        //   loose: true,
-        // },
-      ],
+      [classPropertiesPlugin],
       [
         objectRestSpreadPlugin,
         {
