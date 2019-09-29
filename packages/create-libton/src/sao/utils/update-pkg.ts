@@ -69,6 +69,7 @@ export const updatePkg = async (answers: Answers, generator: Generator) => {
       answers.cli && 'bin',
       'src',
       'index.d.ts',
+      'tsdoc-metadata.json',
     ].filter(Boolean),
     ...(answers.cli && {
       bin: {
@@ -77,6 +78,7 @@ export const updatePkg = async (answers: Answers, generator: Generator) => {
     }),
     scripts: {
       build: 'libton-script build',
+      'build:doc': 'libton-script doc',
       test: 'libton-script test',
       lint: 'libton-script lint',
       format: 'libton-script format',
