@@ -3,6 +3,7 @@ import { libtonBuildCommand } from '../libton-build/libton-build.command';
 import { libtonTestCommand } from '../libton-test/libton-test.command';
 import { libtonFormatCommand } from '../libton-format/libton-format.command';
 import { libtonLintCommand } from '../libton-lint/libton-lint.command';
+import { libtonBuildDocCommand } from '../libton-build-doc/libton-build-doc.command';
 
 export function libtonScriptCommand(program: Command) {
   program.description('☕  libton script  ☕');
@@ -11,4 +12,5 @@ export function libtonScriptCommand(program: Command) {
   libtonTestCommand(program.command('test'));
   libtonLintCommand(program.command('lint'));
   libtonFormatCommand(program.command('format'));
+  libtonBuildDocCommand(program.command('doc'));
 }

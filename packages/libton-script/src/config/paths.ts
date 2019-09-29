@@ -60,6 +60,7 @@ export const paths = {
   libDts: resolveApp('index.d.ts'),
   libPackage: resolveApp('package.json'),
   testsSetup: resolveModule(resolveApp, 'src/setupTests'),
+  docRoot: resolveApp('docs/api/'),
   outputDirs: {
     dist: resolveApp('dist'),
     lib: resolveApp('lib'),
