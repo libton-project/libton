@@ -12,10 +12,12 @@
     "lib",
     "es",
     "src",
-    "index.d.ts"
+    "index.d.ts",
+    "tsdoc-metadata.json"
   ],
   "scripts": {
     "build": "libton-script build",
+    "build:doc": "libton-script doc",
     "test": "libton-script test",
     "lint": "libton-script lint",
     "format": "libton-script format",
