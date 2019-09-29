@@ -1,3 +1,3 @@
-import <%= umdName %> from '..';
+import { <%= umdName %> } from '..';
 
 console.log(<%= umdName %>());

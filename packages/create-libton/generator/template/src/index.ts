@@ -13,16 +13,18 @@
  *
  * return `<%= filename %>` string
  *
- * @returns `<%= filename %>`
+ * @returns the `<%= filename %>`  string
  *
  * @example
  * Here's an example:
  *
  * ```ts
- * // Prints "<%= filename %>":
+ * import { <%= umdName %> } from '<%= name %>'
+ *
  * console.log(<%= umdName %>());
+ * // Prints "<%= filename %>":
  * ```
  */
-const <%= umdName %> = () => '<%= filename %>';
-
-export default <%= umdName %>;
+export function <%= umdName %>() {
+  return '<%= filename %>';
+}

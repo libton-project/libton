@@ -14,7 +14,7 @@
 ## Usage
 
 ```js
-import <%= umdName %> from '<%= name %>';
+import { %= umdName % } from '<%= name %>';
 
 <%= umdName %>();
 //=> <%= filename %>

@@ -1,4 +1,4 @@
-import <%= umdName %> from './index';
+import { <%= umdName %> } from './index';
 
 describe('<%= umdName %>', () => {
   it('should return <%= filename %>', () => {
