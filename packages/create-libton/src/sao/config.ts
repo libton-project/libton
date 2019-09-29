@@ -76,22 +76,23 @@ export const config = (): any => ({
       {
         type: 'move',
         patterns: {
-          gitignore: '.gitignore',
-          '_package.json': 'package.json',
-        },
-      },
-      {
-        type: 'move',
-        patterns: {
           'src/bin/cli.ts': `src/bin/${this.answers.cliName}.ts`,
         },
         when: 'cli',
       },
       {
         type: 'modify',
-        files: 'package.json',
-        handler: () => {
-          return updatePkg(this.answers, this);
+        files: 'package_json',
+        handler: async () => {
+          const pkg = await updatePkg(this.answers, this);
+          return JSON.stringify(pkg, null, 2) + '\n';
+        },
+      },
+      {
+        type: 'move',
+        patterns: {
+          gitignore: '.gitignore',
+          package_json: 'package.json',
         },
       },
     ];
