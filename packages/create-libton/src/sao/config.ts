@@ -93,6 +93,7 @@ export const config = (): any => ({
         patterns: {
           gitignore: '.gitignore',
           package_json: 'package.json',
+          'src/code.ts': `src/${this.answers.filename}.ts`,
         },
       },
     ];
