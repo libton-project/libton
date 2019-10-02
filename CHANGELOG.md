@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.11.0-alpha.0](https://github.com/libton-project/libton/compare/v0.10.2...v0.11.0-alpha.0) (2019-10-02)
+
+
+### Features
+
+* **create-libton:** add types.d.ts in generated files ([c891067](https://github.com/libton-project/libton/commit/c891067))
+* **libton-script:** support re-export types ([a9fe1a5](https://github.com/libton-project/libton/commit/a9fe1a5))
+
+
+
+
+
 ## [0.10.2](https://github.com/libton-project/libton/compare/v0.10.1...v0.10.2) (2019-09-29)
 
 
