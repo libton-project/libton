@@ -1,6 +1,6 @@
 {
   "name": "create-libton",
-  "version": "0.11.0-alpha.0",
+  "version": "0.11.0-alpha.1",
   "description": "Create modern lib with no build configuration.",
   "main": "dist/index.js",
   "repository": {
