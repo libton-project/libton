@@ -10,6 +10,8 @@ import mkdirp from 'mkdirp';
 import spawn from 'cross-spawn';
 import { flatten } from 'lodash';
 import { libtonFormat } from '../../commands/libton-format/libton-format';
+import { getExtractorConfig } from '../../config/extractor-config';
+import { copyTypes } from './copy-types';
 
 export async function buildDoc() {
   const title = 'api doc:';
@@ -19,36 +21,18 @@ export async function buildDoc() {
   logger.title(title);
   mkdirp.sync(paths.docRoot);
   await buildTs();
-  const extractorConfig: ExtractorConfig = ExtractorConfig.prepare({
-    configObject: {
-      projectFolder: paths.libRoot,
-      mainEntryPointFilePath: resolveApp('.cache/build/index.d.ts'),
-      docModel: {
-        enabled: true,
-        apiJsonFilePath:
-          '<projectFolder>/.cache/doc-model/<unscopedPackageName>.api.json',
-      },
-      tsdocMetadata: {
-        enabled: true,
-        tsdocMetadataFilePath: '<lookup>',
-      },
-      compiler: {
-        tsconfigFilePath: resolveApp('tsconfig.json'),
-        overrideTsconfig: {
-          compilerOptions: {
-            isolatedModules: false,
-            declaration: true,
-            declarationMap: true,
-            module: 'commonjs',
-            outDir: '.cache/build',
-            sourceMap: true,
-            noEmit: false,
-          },
-        },
-      },
+  copyTypes();
+
+  const extractorConfig: ExtractorConfig = getExtractorConfig({
+    docModel: {
+      enabled: true,
+      apiJsonFilePath:
+        '<projectFolder>/.cache/doc-model/<unscopedPackageName>.api.json',
     },
-    configObjectFullPath: undefined,
-    packageJsonFullPath: paths.libPackage,
+    tsdocMetadata: {
+      enabled: true,
+      tsdocMetadataFilePath: '<lookup>',
+    },
   });
 
   const extractorResult: ExtractorResult = Extractor.invoke(extractorConfig, {

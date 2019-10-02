@@ -1,4 +1,4 @@
-import { paths, resolveApp } from '../../config/paths';
+import { paths } from '../../config/paths';
 import { BuildLogger } from '../BuildLogger';
 import {
   Extractor,
@@ -7,6 +7,8 @@ import {
 } from '@microsoft/api-extractor';
 import { buildTs } from './buildTs';
 import { libtonFormat } from '../../commands/libton-format/libton-format';
+import { getExtractorConfig } from '../../config/extractor-config';
+import { copyTypes } from './copy-types';
 
 export async function buildDts() {
   const input = paths.libIndex;
@@ -18,31 +20,13 @@ export async function buildDts() {
   logger.title(title);
   logger.convert(input, output);
   await buildTs();
-  const extractorConfig: ExtractorConfig = ExtractorConfig.prepare({
-    configObject: {
-      projectFolder: paths.libRoot,
-      mainEntryPointFilePath: resolveApp('.cache/build/index.d.ts'),
-      dtsRollup: {
-        enabled: true,
-        untrimmedFilePath: output,
-      },
-      compiler: {
-        tsconfigFilePath: resolveApp('tsconfig.json'),
-        overrideTsconfig: {
-          compilerOptions: {
-            isolatedModules: false,
-            declaration: true,
-            declarationMap: true,
-            module: 'commonjs',
-            outDir: '.cache/build',
-            sourceMap: true,
-            noEmit: false,
-          },
-        },
-      },
+  copyTypes();
+
+  const extractorConfig: ExtractorConfig = getExtractorConfig({
+    dtsRollup: {
+      enabled: true,
+      untrimmedFilePath: output,
     },
-    configObjectFullPath: undefined,
-    packageJsonFullPath: paths.libPackage,
   });
 
   const extractorResult: ExtractorResult = Extractor.invoke(extractorConfig, {
