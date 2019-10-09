@@ -84,7 +84,7 @@ export async function build(env: BuildEnv) {
         extensions: ['.mjs', '.js', '.jsx', '.json', '.ts', '.tsx'],
       }),
       commonjs(),
-      babel(babelConfig(env)),
+      babel(babelConfig()),
       replaceNodeEnv &&
         replace({
           'process.env.NODE_ENV': JSON.stringify(nodeEnv),

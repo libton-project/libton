@@ -8,7 +8,6 @@ import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import { babelConfig } from '../../config/babel-config';
-import { BuildEnv } from '../../types';
 import replace from 'rollup-plugin-replace';
 
 export async function buildBins() {
@@ -61,7 +60,7 @@ async function buildBin(name: string, file: string) {
         extensions: ['.mjs', '.js', '.jsx', '.json', '.ts', '.tsx'],
       }),
       commonjs(),
-      babel(babelConfig(BuildEnv.BIN)),
+      babel(babelConfig({ helpers: true })),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production'),
       }),

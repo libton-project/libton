@@ -6,10 +6,12 @@ import destructuringPlugin from '@babel/plugin-transform-destructuring';
 import decoratorsPlugin from '@babel/plugin-proposal-decorators';
 import classPropertiesPlugin from '@babel/plugin-proposal-class-properties';
 import objectRestSpreadPlugin from '@babel/plugin-proposal-object-rest-spread';
-import { BuildEnv } from '../types';
 
-export function babelConfig(env: BuildEnv) {
-  const bin = env === BuildEnv.BIN;
+export interface Options {
+  helpers?: boolean;
+}
+export function babelConfig(options: Options = {}) {
+  const { helpers = false } = options;
   return {
     presets: [
       [
@@ -38,7 +40,7 @@ export function babelConfig(env: BuildEnv) {
       [typescriptPreset],
     ],
     plugins: [
-      ...(bin ? ['@babel/plugin-transform-runtime'] : []),
+      ...(helpers ? ['@babel/plugin-transform-runtime'] : []),
       [macrosPlugin],
       [destructuringPlugin, { loose: false }],
       [decoratorsPlugin, { legacy: true }],
@@ -52,6 +54,6 @@ export function babelConfig(env: BuildEnv) {
     ],
     exclude: '**/node_modules/**',
     extensions: ['.js', '.jsx', '.mjs', '.ts', '.tsx'],
-    ...(bin && { runtimeHelpers: true }),
+    ...(helpers && { runtimeHelpers: true }),
   };
 }
