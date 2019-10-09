@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.1](https://github.com/libton-project/libton/compare/v0.11.0...v0.11.1) (2019-10-09)
+
+
+### Bug Fixes
+
+* **libton-script:** fix regeneratorRuntime error for common js build ([e8c5a45](https://github.com/libton-project/libton/commit/e8c5a45))
+* **libton-script:** support jsx in test files ([7f7aec1](https://github.com/libton-project/libton/commit/7f7aec1))
+
+
+
+
+
 # [0.11.0](https://github.com/libton-project/libton/compare/v0.11.0-alpha.1...v0.11.0) (2019-10-07)
 
 **Note:** Version bump only for package root
