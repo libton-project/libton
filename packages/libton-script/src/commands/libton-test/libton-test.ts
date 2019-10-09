@@ -23,6 +23,13 @@ export async function libtonTest(
     : undefined;
 
   const config = {
+    globals: {
+      'ts-jest': {
+        tsConfig: {
+          jsx: 'react',
+        },
+      },
+    },
     collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
     setupFilesAfterEnv: setupTestsFile ? [setupTestsFile] : [],
     testMatch: [
