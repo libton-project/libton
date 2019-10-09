@@ -21,8 +21,6 @@ function getFormat(env: BuildEnv) {
     case BuildEnv.UMD_DEVELOPMENT:
     case BuildEnv.UMD_PRODUCTION:
       return 'umd';
-    default:
-      throw new Error('Invalid env param');
   }
 }
 
@@ -38,8 +36,6 @@ function getFile(env: BuildEnv, config: LibtonConfig) {
       return path.join(paths.outputDirs.dist, config.filename + '.js');
     case BuildEnv.UMD_PRODUCTION:
       return path.join(paths.outputDirs.dist, config.filename + '.min.js');
-    default:
-      throw new Error('Invalid env param');
   }
 }
 
@@ -55,8 +51,6 @@ function getTitle(env: BuildEnv) {
       return 'umd development:';
     case BuildEnv.UMD_PRODUCTION:
       return 'umd production:';
-    default:
-      throw new Error('Invalid env param');
   }
 }
 
@@ -76,6 +70,7 @@ export async function build(env: BuildEnv) {
     env === BuildEnv.UMD_PRODUCTION;
   const nodeEnv =
     env === BuildEnv.UMD_DEVELOPMENT ? 'development' : 'production';
+  const babelHelpers = env === BuildEnv.COMMON_JS;
   const bundle = await rollup({
     input,
     external: config.external,
@@ -84,7 +79,7 @@ export async function build(env: BuildEnv) {
         extensions: ['.mjs', '.js', '.jsx', '.json', '.ts', '.tsx'],
       }),
       commonjs(),
-      babel(babelConfig()),
+      babel(babelConfig({ helpers: babelHelpers })),
       replaceNodeEnv &&
         replace({
           'process.env.NODE_ENV': JSON.stringify(nodeEnv),
