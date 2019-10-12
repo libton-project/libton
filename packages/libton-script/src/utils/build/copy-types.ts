@@ -1,6 +1,6 @@
 import cpFile from 'cp-file';
 import { resolveApp } from '../../config/paths';
-import { writeFileSync } from 'fs';
+import { writeFileSync, readFileSync } from 'fs';
 
 export function copyTypes() {
   try {
@@ -15,9 +15,17 @@ export function copyTypes() {
       throw e;
     }
   }
+  const indexContent = readFileSync(
+    resolveApp('.cache/build/index.d.ts'),
+  ).toString();
+  const typesContent = readFileSync(
+    resolveApp('.cache/build/types.d.ts'),
+  ).toString();
+
   const content = `
-export * from './index';
-export * from './types';
+${indexContent}
+
+${typesContent}
 `;
   writeFileSync(resolveApp('.cache/build/__type_d_and_index.d.ts'), content);
 }
