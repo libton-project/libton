@@ -1,4 +1,4 @@
-import cosmiconfig from 'cosmiconfig';
+import { cosmiconfigSync } from 'cosmiconfig';
 import { getFilename, getName } from '@libton/share';
 import get from 'lodash/get';
 import { paths } from './paths';
@@ -24,7 +24,7 @@ function getLibtonConfig(): LibtonConfig {
     ...Object.keys(libPackage.peerDependencies || {}),
   ];
 
-  const result = cosmiconfig('libton').searchSync(paths.libRoot);
+  const result = cosmiconfigSync('libton').search(paths.libRoot);
   const config = result ? result.config : {};
 
   const {

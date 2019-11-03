@@ -35,17 +35,17 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.8",
+    "@types/jest": "^24.0.21",
+    "@types/node": "^12.12.5",
     "jest": "^24.9.0",
-    "lint-staged": "^9.4.0",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.4"
   },
   "dependencies": {
-    "commander": "^3.0.2",
+    "commander": "^4.0.0",
     "create-libton": "^0.11.0"
   }
 }
