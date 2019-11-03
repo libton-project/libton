@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.11.3](https://github.com/libton-project/libton/compare/v0.11.2...v0.11.3) (2019-11-03)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([744bc56](https://github.com/libton-project/libton/commit/744bc5693209b36e78345ec3a575db1d32477090))
+
+
+
+
+
 # [0.11.0](https://github.com/libton-project/libton/compare/v0.11.0-alpha.1...v0.11.0) (2019-10-07)
 
 **Note:** Version bump only for package create-libton

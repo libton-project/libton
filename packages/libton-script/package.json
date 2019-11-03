@@ -1,6 +1,6 @@
 {
   "name": "libton-script",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "description": "Configuration and scripts for libton",
   "repository": {
     "type": "git",
@@ -61,7 +61,7 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-react": "^7.6.3",
     "@babel/preset-typescript": "^7.3.3",
-    "@libton/share": "^0.10.2",
+    "@libton/share": "^0.11.3",
     "@microsoft/api-documenter": "^7.5.4",
     "@microsoft/api-extractor": "^7.5.2",
     "babel-plugin-macros": "^2.6.1",
