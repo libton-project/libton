@@ -79,12 +79,12 @@ export const updatePkg = async (answers: Answers, generator: Generator) => {
     scripts: {
       build: 'libton-script build',
       'build:doc': 'libton-script doc',
-      test: 'libton-script test',
+      test: 'libton-script test --coverage --verbose',
       lint: 'libton-script lint',
       format: 'libton-script format',
       'format:check': 'libton-script format --check',
       validate:
-        'libton-script lint && libton-script format --check && libton-script test',
+        'libton-script lint && libton-script format --check && libton-script test --coverage --verbose',
       ...(preCommit && monoRepo && { 'pre-commit': 'lint-staged' }),
       prepublishOnly: `${pmRun} validate && ${pmRun} build`,
     },
