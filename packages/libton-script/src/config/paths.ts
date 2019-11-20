@@ -66,4 +66,5 @@ export const paths = {
     lib: resolveApp('lib'),
     es: resolveApp('es'),
   },
+  cache: resolveApp('.cache'),
 };

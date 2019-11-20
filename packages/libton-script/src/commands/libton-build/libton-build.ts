@@ -2,6 +2,8 @@ import { buildDts } from '../../utils/build/buildDts';
 import { build } from '../../utils/build/buildBundels';
 import { BuildEnv } from '../../types';
 import { buildBins } from '../../utils/build/buildBins';
+import { cleanBuild } from '../../utils/build/cleanBuild';
+import { cleanCache } from '../../utils/build/cleanCache';
 
 export interface LibtonBuildOptions {}
 export async function libtonBuild(options: LibtonBuildOptions) {
@@ -9,6 +11,9 @@ export async function libtonBuild(options: LibtonBuildOptions) {
 
   process.env.BABEL_ENV = 'production';
   process.env.NODE_ENV = 'production';
+
+  await cleanCache();
+  await cleanBuild();
 
   await buildDts();
   await build(BuildEnv.COMMON_JS);
