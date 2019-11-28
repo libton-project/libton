@@ -6,6 +6,7 @@ import destructuringPlugin from '@babel/plugin-transform-destructuring';
 import decoratorsPlugin from '@babel/plugin-proposal-decorators';
 import classPropertiesPlugin from '@babel/plugin-proposal-class-properties';
 import objectRestSpreadPlugin from '@babel/plugin-proposal-object-rest-spread';
+import transformRuntimePlugin from '@babel/plugin-transform-runtime';
 
 export interface Options {
   helpers?: boolean;
@@ -40,7 +41,7 @@ export function babelConfig(options: Options = {}) {
       [typescriptPreset],
     ],
     plugins: [
-      ...(helpers ? ['@babel/plugin-transform-runtime'] : []),
+      ...(helpers ? [transformRuntimePlugin] : []),
       [macrosPlugin],
       [destructuringPlugin, { loose: false }],
       [decoratorsPlugin, { legacy: true }],
