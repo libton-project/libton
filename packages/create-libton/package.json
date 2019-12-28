@@ -52,5 +52,6 @@
     "find-up": "^4.1.0",
     "latest-version": "^5.1.0",
     "sao": "^1.7.0"
-  }
+  },
+  "gitHead": "20cc3c553e50b744d78b33a9d683a9113664d76c"
 }

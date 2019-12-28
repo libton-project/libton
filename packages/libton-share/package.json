@@ -28,10 +28,12 @@
   },
   "devDependencies": {
     "@types/jest": "24.0.25",
+    "@typescript-eslint/eslint-plugin": "^2.13.0",
     "lint-staged": "9.5.0"
   },
   "dependencies": {
     "camelcase": "^5.3.1",
     "decamelize": "^3.2.0"
-  }
+  },
+  "gitHead": "20cc3c553e50b744d78b33a9d683a9113664d76c"
 }

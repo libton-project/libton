@@ -1,6 +1,3 @@
 {
-  "extends": ["react-app"],
-  "settings": {
-    "react": { "version": "latest" }
-  }
+  extends: ['plugin:react-app/recommended']
 }

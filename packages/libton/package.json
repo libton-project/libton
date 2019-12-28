@@ -47,5 +47,6 @@
   "dependencies": {
     "commander": "^4.0.1",
     "create-libton": "^0.12.0"
-  }
+  },
+  "gitHead": "20cc3c553e50b744d78b33a9d683a9113664d76c"
 }
