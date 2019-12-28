@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.12.0](https://github.com/libton-project/libton/compare/v0.11.3...v0.12.0) (2019-12-28)
+
+
+### Bug Fixes
+
+* **create-libton:** add --coverage --verbose flags to test script ([780f5d7](https://github.com/libton-project/libton/commit/780f5d72b0c3dc1e01cb6feb960c5653b98c03cb))
+* upgrade dependencies ([d1df86e](https://github.com/libton-project/libton/commit/d1df86e7df93ed6895f8cff689dd19034ce65600))
+
+
+
+
+
 ## [0.11.3](https://github.com/libton-project/libton/compare/v0.11.2...v0.11.3) (2019-11-03)
 
 
