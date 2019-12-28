@@ -37,18 +37,18 @@
     ]
   },
   "devDependencies": {
-    "@types/jest": "^24.0.21",
-    "@types/node": "^12.12.5",
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.1",
     "jest": "^24.9.0",
-    "lint-staged": "^9.4.2",
-    "prettier": "^1.18.2",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "ts-jest": "^24.0.2",
-    "typescript": "^3.6.4"
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.4"
   },
   "dependencies": {
     "@libton/share": "^0.11.3",
-    "commander": "^4.0.0",
+    "commander": "^4.0.1",
     "find-up": "^4.1.0",
     "latest-version": "^5.1.0",
     "sao": "^1.7.0"
