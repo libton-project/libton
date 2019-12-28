@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.1](https://github.com/libton-project/libton/compare/v0.12.0...v0.12.1) (2019-12-28)
+
+### Bug Fixes
+
+- **libton-script:** fix eslintrc ([da185db](https://github.com/libton-project/libton/commit/da185db27cf9de9c81bf96f9530fc8ebef1dd561))
+
 # [0.12.0](https://github.com/libton-project/libton/compare/v0.11.3...v0.12.0) (2019-12-28)
 
 ### Bug Fixes
