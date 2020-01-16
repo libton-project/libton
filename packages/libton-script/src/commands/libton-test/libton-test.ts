@@ -1,6 +1,6 @@
 import { moduleFileExtensions, paths } from '../../config/paths';
 import fs from 'fs';
-import jest from 'jest';
+import { run } from 'jest';
 
 export interface LibtonTestOptions {}
 export async function libtonTest(
@@ -50,5 +50,5 @@ export async function libtonTest(
 
   argv.push('--config', JSON.stringify(config));
 
-  jest.run(argv);
+  run(argv);
 }
