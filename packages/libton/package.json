@@ -1,6 +1,6 @@
 {
   "name": "libton",
-  "version": "0.12.1",
+  "version": "0.12.2",
   "description": "libton cli",
   "repository": {
     "type": "git",
@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "commander": "^4.1.1",
-    "create-libton": "^0.12.1"
+    "create-libton": "^0.12.2"
   },
   "gitHead": "20cc3c553e50b744d78b33a9d683a9113664d76c"
 }
