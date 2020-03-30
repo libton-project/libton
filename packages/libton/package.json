@@ -30,8 +30,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,ts,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "devDependencies": {
