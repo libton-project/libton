@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.3](https://github.com/libton-project/libton/compare/v0.12.2...v0.12.3) (2020-03-30)
+
+### Bug Fixes
+
+- update dependencies ([00ed22a](https://github.com/libton-project/libton/commit/00ed22ad112a8fa08e01de88a3563884e066535e))
+
 ## [0.12.2](https://github.com/libton-project/libton/compare/v0.12.1...v0.12.2) (2020-03-06)
 
 **Note:** Version bump only for package @libton/share
