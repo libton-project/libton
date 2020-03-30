@@ -1,7 +1,7 @@
-import { Command } from 'commander';
 import { createLibton, CreateOptions } from './create-libton';
+import commander from 'commander';
 
-export function createLibtonCommand(program: Command) {
+export function createLibtonCommand(program: commander.Command) {
   program
     .arguments('<dir>')
     .description('Create new library with libton-script')

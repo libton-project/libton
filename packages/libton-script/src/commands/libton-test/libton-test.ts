@@ -43,7 +43,7 @@ export async function libtonTest(
       '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$',
     ],
     moduleFileExtensions: [...moduleFileExtensions, 'node'].filter(
-      ext => !ext.includes('mjs'),
+      (ext) => !ext.includes('mjs'),
     ),
     rootDir: paths.libRoot,
   };

@@ -18,17 +18,14 @@ export interface Answers {
 
 const latestVersions = async (dependencies: string[]) => {
   const versions = await Promise.all(
-    dependencies.map(dependency =>
-      latestVersion(dependency).then(version => [dependency, version]),
+    dependencies.map((dependency) =>
+      latestVersion(dependency).then((version) => [dependency, version]),
     ),
   );
-  return versions.reduce(
-    (acc, [dependency, version]) => {
-      acc[dependency] = version;
-      return acc;
-    },
-    {} as any,
-  );
+  return versions.reduce((acc, [dependency, version]) => {
+    acc[dependency] = version;
+    return acc;
+  }, {} as any);
 };
 
 export const updatePkg = async (answers: Answers, generator: Generator) => {

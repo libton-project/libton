@@ -38,7 +38,7 @@ export function resolveModule(
   filePath: string,
   fallback: string | null = '.js',
 ): string | null {
-  const extension = moduleFileExtensions.find(extension =>
+  const extension = moduleFileExtensions.find((extension) =>
     fs.existsSync(resolveFn(`${filePath}.${extension}`)),
   );
 

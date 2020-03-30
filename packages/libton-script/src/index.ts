@@ -1,6 +1,4 @@
-export {
-  libtonScriptCommand,
-} from './commands/libton-script/libton-script.command';
+export { libtonScriptCommand } from './commands/libton-script/libton-script.command';
 export {
   libtonScriptCli,
   LibtonScriptCliOptions,
