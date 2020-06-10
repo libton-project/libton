@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.5](https://github.com/libton-project/libton/compare/v0.12.4...v0.12.5) (2020-06-10)
+
+
+### Bug Fixes
+
+* remove commander-remaining-args ([8215fd3](https://github.com/libton-project/libton/commit/8215fd35d002a4f659beeee64f3cae5c89afa10a))
+
+
+
+
+
 ## [0.12.4](https://github.com/libton-project/libton/compare/v0.12.3...v0.12.4) (2020-06-10)
 
 
