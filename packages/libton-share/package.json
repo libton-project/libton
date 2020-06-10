@@ -27,12 +27,12 @@
     "prepublishOnly": "yarn validate && yarn build"
   },
   "devDependencies": {
-    "@types/jest": "25.1.4",
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "lint-staged": "10.1.0"
+    "@types/jest": "26.0.0",
+    "@typescript-eslint/eslint-plugin": "^3.2.0",
+    "lint-staged": "10.2.9"
   },
   "dependencies": {
-    "camelcase": "^5.3.1",
+    "camelcase": "^6.0.0",
     "decamelize": "^4.0.0"
   },
   "gitHead": "20cc3c553e50b744d78b33a9d683a9113664d76c"
