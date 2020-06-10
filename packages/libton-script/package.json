@@ -68,7 +68,6 @@
     "camelcase": "^6.0.0",
     "colorette": "^1.1.0",
     "commander": "^5.0.0",
-    "commander-remaining-args": "^1.2.0",
     "cosmiconfig": "^6.0.0",
     "cp-file": "^9.0.0",
     "cross-spawn": "^7.0.1",
