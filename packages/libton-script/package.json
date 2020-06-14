@@ -37,7 +37,7 @@
   "devDependencies": {
     "@types/cosmiconfig": "^6.0.0",
     "@types/cross-spawn": "^6.0.1",
-    "@types/eslint": "^6.1.8",
+    "@types/eslint": "^7.2.0",
     "@types/jest": "^26.0.0",
     "@types/lodash": "^4.14.149",
     "@types/mkdirp": "^1.0.0",
@@ -47,7 +47,7 @@
     "husky": "^4.2.3",
     "jest": "^24.9.0",
     "lerna": "^3.20.2",
-    "lint-staged": "^10.1.0",
+    "lint-staged": "^10.2.10",
     "rimraf": "^3.0.0"
   },
   "dependencies": {
@@ -61,8 +61,8 @@
     "@babel/preset-react": "^7.9.4",
     "@babel/preset-typescript": "^7.9.0",
     "@libton/share": "^0.12.4",
-    "@microsoft/api-documenter": "^7.7.16",
-    "@microsoft/api-extractor": "^7.7.12",
+    "@microsoft/api-documenter": "^7.8.12",
+    "@microsoft/api-extractor": "^7.8.11",
     "@typescript-eslint/eslint-plugin": "^3.2.0",
     "babel-plugin-macros": "^2.8.0",
     "camelcase": "^6.0.0",
@@ -81,7 +81,7 @@
     "pretty-ms": "^7.0.0",
     "read-pkg": "^5.2.0",
     "rimraf": "^3.0.2",
-    "rollup": "^2.3.0",
+    "rollup": "^2.16.1",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-node-resolve": "^5.2.0",
