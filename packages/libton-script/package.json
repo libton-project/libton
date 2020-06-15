@@ -72,7 +72,7 @@
     "cp-file": "^9.0.0",
     "cross-spawn": "^7.0.1",
     "decamelize": "^4.0.0",
-    "eslint": "^7.2.0",
+    "eslint": "^6.0.0",
     "eslint-plugin-react-app": "^6.2.1",
     "jest": "^26.0.1",
     "lodash": "^4.17.15",
