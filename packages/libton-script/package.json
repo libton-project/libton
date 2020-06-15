@@ -1,6 +1,6 @@
 {
   "name": "libton-script",
-  "version": "0.12.6",
+  "version": "0.12.7",
   "description": "Configuration and scripts for libton",
   "repository": {
     "type": "git",

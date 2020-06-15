@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.7](https://github.com/libton-project/libton/compare/v0.12.6...v0.12.7) (2020-06-15)
+
+
+### Bug Fixes
+
+* downgrade eslint ([d487de5](https://github.com/libton-project/libton/commit/d487de5fe07177c42f6ed33ddbd6144cb7ba04c7))
+
+
+
+
+
 ## [0.12.6](https://github.com/libton-project/libton/compare/v0.12.5...v0.12.6) (2020-06-14)
 
 
