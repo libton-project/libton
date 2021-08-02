@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.12.8](https://github.com/libton-project/libton/compare/v0.12.7...v0.12.8) (2021-08-02)
+
+
+### Bug Fixes
+
+* update typescript and api-extractor ([ec91474](https://github.com/libton-project/libton/commit/ec914743210523deb52046d7b4b48ba62f9452a5))
+
+
+
+
+
 ## [0.12.7](https://github.com/libton-project/libton/compare/v0.12.6...v0.12.7) (2020-06-15)
 
 
